@@ -30,5 +30,14 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "antd": "^4.4.2",
+    "bootstrap": "^4.5.0",
+    "gsap": "^3.4.0",
+    "react-gsap": "^2.2.1",
+    "react-redux": "^7.2.0",
+    "react-router-dom": "^5.2.0",
+    "redux": "^4.0.5"
   }
 }
