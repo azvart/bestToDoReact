@@ -40,6 +40,25 @@ export const stateCategory = (state=initialState,action)=>{
             }
         )
         }
+        case ADD_SUB_CATEGORY:{
+            return(
+                {
+                    ...state,
+                    data:{
+                        ...state.data,
+                        category:{
+                            content:[...state.data.category.content],
+                            subCategory:{
+                                content:[...state.data.category.subCategory.content,action.payload.content],
+                                task:{
+                                    content:[...state.data.category.subCategory.task.content]
+                                }
+                            }
+                        },
+                    },
+                }
+            )
+        }
         default:{
             return state
         }

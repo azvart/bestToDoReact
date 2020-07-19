@@ -22,6 +22,7 @@ const Main =(props)=>{
     const[modal,setModal] = useState({
         visible:false
     });
+    const[sub,setSub] = useState();
 
 
     //Модалка
@@ -104,7 +105,25 @@ const Main =(props)=>{
                               </SubMenu>} */}
                             
                             {data.data.category.content.map((e)=><SubMenu title={e}>
+                                <div className="text-center">
+                            <Button type='primary' onClick={showModal}>Add SubCategory</Button>
+                            </div>
+                                    <Modal 
+                                    title={`SubCategory to ${e}`}
+                                    visible={modal.visible}
+                                    onOk={handleOk}
+                                    onCancel={handleCancel}
+                                    >
+                                    <Search 
+                                        placeholder={`Write new SubCategory to ${e}`}
+                                        enterButton ="Added"
+                                        value={sub}
+                                        onChange={(u)=>setSub(u.target.value)}
+                                        onSearch={()=>addSubCategory([sub])}
+                                    />
+                                    </Modal>
                                 {data.data.category.subCategory.content.map((t)=><SubMenu title={t}>
+               
                                     {data.data.category.subCategory.task.content.map((r)=><Menu.Item>
                                         {r}
                                     </Menu.Item>)}
@@ -143,7 +162,10 @@ const mapStateToProps=(state)=>{
 };
 }
 const mapDispatchToProps=(dispatch)=>{
-   return{ addCategory: bindActionCreators(addCategory,dispatch)}
+   return{ 
+    addCategory: bindActionCreators(addCategory,dispatch),
+    addSubCategory: bindActionCreators(addSubCategory,dispatch)
+    }
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(Main);
